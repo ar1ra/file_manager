@@ -5,7 +5,12 @@ export const FILE_MANAGER_OPERATIONS = {
   MOVE: "mv",
   COPY: "cp",
   DELETE: "rm",
-  EXIT: ".exit"
+  EXIT: ".exit",
+  GETEOL: "os --EOL",
+  GETCPUS: "os --cpus",
+  HOMEDIR: "os --homedir",
+  USERNAME: "os --username",
+  ARCHITECTURE: "os --architecture"
 };
 export const INVALID_DATA = "Invalid data";
 export const OPERATION_FAILED = "Operation failed";

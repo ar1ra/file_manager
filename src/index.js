@@ -15,6 +15,12 @@ import renameFile from "./renameFile/renameFile.js";
 import moveFile from "./moveFile/moveFile.js";
 import deleteFile from "./deleteFile/deleteFile.js";
 
+import getEOL from "./getEOL/getEOL.js";
+import getCPUS from "./getCPUS/getCPUS.js";
+import homedir from "./homedir/homedir.js";
+import userName from "./userName/userName.js";
+import architecture from "./architecture/architecture.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -59,6 +65,31 @@ const startFileManager = () => {
     //Move File
     if (input.startsWith(FILE_MANAGER_OPERATIONS.MOVE)) {
       moveFile(input);
+    }
+
+    //Get EOL
+    if (input.startsWith(FILE_MANAGER_OPERATIONS.GETEOL)) {
+      getEOL();
+    }
+
+    //Get CPUS
+    if (input.startsWith(FILE_MANAGER_OPERATIONS.GETCPUS)) {
+      getCPUS();
+    }
+
+    //Get Homedir
+    if (input.startsWith(FILE_MANAGER_OPERATIONS.HOMEDIR)) {
+      homedir();
+    }
+
+    //Get username
+    if (input.startsWith(FILE_MANAGER_OPERATIONS.USERNAME)) {
+      userName();
+    }
+
+    //Get architecture
+    if (input.startsWith(FILE_MANAGER_OPERATIONS.ARCHITECTURE)) {
+      architecture();
     }
   });
 
