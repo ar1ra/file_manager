@@ -18,7 +18,7 @@ export const cd = async (input) => {
         console.log(OPERATION_FAILED);
       }
       else {
-        showHomedir.set(directoryPath)
+        showHomedir.set(path.resolve(showHomedir.get(), directoryPath));
       }
     } catch (error) {
       console.log(OPERATION_FAILED);
