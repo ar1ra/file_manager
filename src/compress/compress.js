@@ -2,17 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
 import { pipeline } from "node:stream";
-import { fileURLToPath } from "node:url";
 import {
   OPERATION_FAILED,
-  INVALID_DATA
+  INVALID_DATA,
+  showHomedir
 } from "../constants/constants.js";
 
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const compress = (input) => {
+const compress = (input, __dirname) => {
   const filePath = input.split(" ")[1];
   const newDestination = input.split(" ")[2];
 
@@ -49,6 +45,7 @@ const compress = (input) => {
   else {
     console.log(INVALID_DATA);
   }
+  setTimeout(() => console.log(`You are currently in: ${showHomedir.get()}`), 100);
 };
 
 export default compress;

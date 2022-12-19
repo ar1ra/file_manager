@@ -1,9 +1,9 @@
-import fs, { readSync } from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import {
   OPERATION_FAILED,
-  INVALID_DATA
+  INVALID_DATA,
+  showHomedir
 } from "../constants/constants.js";
 
 const readFile = (input, __filename, __dirname) => {
@@ -35,7 +35,7 @@ const readFile = (input, __filename, __dirname) => {
   } else {
     console.log(INVALID_DATA);
   }
-  setTimeout(() => console.log(`You are currently in: ${path.dirname(fileURLToPath(import.meta.url))}`), 100);
+  setTimeout(() => console.log(`You are currently in: ${showHomedir.get()}`), 100);
 };
 
 export default readFile;

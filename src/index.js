@@ -120,17 +120,17 @@ const startFileManager = () => {
 
     //Hash
     if (input.startsWith(FILE_MANAGER_OPERATIONS.HASH)) {
-      hash(input);
+      hash(input, __dirname);
     }
 
     //Compress
     if(input.startsWith(FILE_MANAGER_OPERATIONS.COMPRESS)){
-      compress(input);
+      compress(input, __dirname);
     }
 
     //Decompress
     if(input.startsWith(FILE_MANAGER_OPERATIONS.DECOMPRESS)){
-      deCompress(input);
+      deCompress(input, __dirname);
     }
   });
 

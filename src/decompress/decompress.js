@@ -2,17 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
 import { pipeline } from "node:stream";
-import { fileURLToPath } from "node:url";
 import {
   OPERATION_FAILED,
-  INVALID_DATA
+  INVALID_DATA,
+  showHomedir
 } from "../constants/constants.js";
 
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const deCompress = (input) => {
+const deCompress = (input, __dirname) => {
   const filePath = input.split(" ")[1];
   const newDestination = input.split(" ")[2];
 
@@ -21,7 +17,7 @@ const deCompress = (input) => {
       pipeline(
         fs.createReadStream(path.resolve(filePath)),
         zlib.createBrotliDecompress(),
-        fs.createWriteStream(path.resolve(newDestination, path.basename(filePath))),
+        fs.createWriteStream(path.resolve(newDestination, `${path.basename(filePath)}.txt`)),
         (err) => {
           if (err) {
             console.log(OPERATION_FAILED);
@@ -34,7 +30,7 @@ const deCompress = (input) => {
       pipeline(
         fs.createReadStream(path.join(__dirname, filePath)),
         zlib.createBrotliDecompress(),
-        fs.createWriteStream(path.join(__dirname, newDestination, path.basename(filePath))),
+        fs.createWriteStream(path.join(__dirname, newDestination, `${path.basename(filePath)}.txt`)),
         (err) => {
           if (err) {
             console.log(OPERATION_FAILED);
@@ -47,6 +43,7 @@ const deCompress = (input) => {
   else {
     console.log(INVALID_DATA);
   }
+  setTimeout(() => console.log(`You are currently in: ${showHomedir.get()}`), 100);
 };
 
 export default deCompress;

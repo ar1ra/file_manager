@@ -1,16 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
-import { fileURLToPath } from "node:url";
 import {
   OPERATION_FAILED,
-  INVALID_DATA
+  INVALID_DATA,
+  showHomedir
 } from "../constants/constants.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const hash = (input) => {
+const hash = (input, __dirname) => {
   const filePath = input.split(" ")[1];
 
   if (filePath) {
@@ -40,6 +37,7 @@ const hash = (input) => {
   else {
     console.log(INVALID_DATA);
   }
+  setTimeout(() => console.log(`You are currently in: ${showHomedir.get()}`), 100);
 };
 
 export default hash;

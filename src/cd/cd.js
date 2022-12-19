@@ -5,7 +5,7 @@ import { showHomedir, INVALID_DATA, OPERATION_FAILED } from "../constants/consta
 export const up = () => {
   const newDirectory = path.resolve(showHomedir.get(), "..")
   showHomedir.set(newDirectory);
-  console.log(showHomedir.get());
+  console.log(`You are currently in: ${showHomedir.get()}`);
 };
 
 export const cd = async (input) => {
@@ -28,7 +28,7 @@ export const cd = async (input) => {
     console.log(INVALID_DATA)
   }
 
-  console.log(showHomedir.get());
+  console.log(`You are currently in: ${showHomedir.get()}`);
 };
 
 export const ls = async () => {
@@ -44,4 +44,6 @@ export const ls = async () => {
   } catch (error) {
     console.log(OPERATION_FAILED)
   }
+
+  console.log(`You are currently in: ${showHomedir.get()}`);
 };
