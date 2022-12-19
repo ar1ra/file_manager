@@ -6,16 +6,9 @@ import {
   INVALID_DATA
 } from "../constants/constants.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const moveFile = (input) => {
+const moveFile = (input, __filename, __dirname) => {
   const filePath = input.split(" ")[1];
   const newDirectory = input.split(" ")[2];
-
-  console.log(filePath)
-  console.log(newDirectory)
-  console.log(path.dirname(newDirectory))
 
   if (filePath && newDirectory) {
     if (
@@ -29,9 +22,7 @@ const moveFile = (input) => {
           path.resolve(
             newDirectory,
             path.basename(filePath)
-          ),
-          { flags: "a" }
-        );
+          ));
         writeStream.write(data)
 
         writeStream.on("error", () => {
@@ -58,7 +49,7 @@ const moveFile = (input) => {
             __dirname,
             newDirectory,
             path.basename(filePath)
-          ), { flags: "a" });
+          ));
         writeStream.write(data)
 
         writeStream.on("error", () => {
@@ -80,6 +71,8 @@ const moveFile = (input) => {
   else {
     console.log(INVALID_DATA);
   }
+
+  setTimeout(() => console.log(`You are currently in: ${path.dirname(fileURLToPath(import.meta.url))}`), 100);
 };
 
 export default moveFile;

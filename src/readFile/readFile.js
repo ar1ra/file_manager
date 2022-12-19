@@ -20,10 +20,6 @@ const readFile = (input, __filename, __dirname) => {
       readableStream.on("error", () => {
         console.log(OPERATION_FAILED);
       })
-
-      readableStream.on("end", () => {
-        console.log(`You are currently in: ${path.dirname(fileURLToPath(import.meta.url))}`);
-      })
     }
     else {
       const readableStream = fs.createReadStream(path.join(__dirname, filePath), "utf8");
@@ -35,14 +31,11 @@ const readFile = (input, __filename, __dirname) => {
       readableStream.on("error", () => {
         console.log(OPERATION_FAILED);
       })
-
-      readableStream.on("end", () => {
-        console.log(`You are currently in: ${path.dirname(fileURLToPath(import.meta.url))}`);
-      })
     }
   } else {
     console.log(INVALID_DATA);
   }
+  setTimeout(() => console.log(`You are currently in: ${path.dirname(fileURLToPath(import.meta.url))}`), 100);
 };
 
 export default readFile;

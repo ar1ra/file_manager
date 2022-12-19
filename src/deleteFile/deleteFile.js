@@ -6,16 +6,13 @@ import {
   INVALID_DATA
 } from "../constants/constants.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const deleteFile = (input) => {
+const deleteFile = (input, __filename, __dirname) => {
   const filePath = input.split(" ")[1];
 
   if (filePath) {
     if (path.isAbsolute(filePath)) {
       fs.rm(path.resolve(filePath), (err) => {
-        if (err) console.log(err);
+        if (err) console.log(OPERATION_FAILED);
       })
     }
     else {
@@ -27,6 +24,8 @@ const deleteFile = (input) => {
   else {
     console.log(INVALID_DATA);
   }
+
+  setTimeout(() => console.log(`You are currently in: ${path.dirname(fileURLToPath(import.meta.url))}`), 100);
 };
 
 export default deleteFile;
