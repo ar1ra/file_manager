@@ -10,7 +10,10 @@ export const FILE_MANAGER_OPERATIONS = {
   GETCPUS: "os --cpus",
   HOMEDIR: "os --homedir",
   USERNAME: "os --username",
-  ARCHITECTURE: "os --architecture"
+  ARCHITECTURE: "os --architecture",
+  HASH: "hash",
+  COMPRESS: "compress",
+  DECOMPRESS: "decompress"
 };
 export const INVALID_DATA = "Invalid data";
 export const OPERATION_FAILED = "Operation failed";

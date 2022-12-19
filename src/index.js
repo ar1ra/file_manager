@@ -21,6 +21,11 @@ import homedir from "./homedir/homedir.js";
 import userName from "./userName/userName.js";
 import architecture from "./architecture/architecture.js";
 
+import hash from "./hash/hash.js";
+
+import compress from "./compress/compress.js";
+import deCompress from "./decompress/decompress.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -90,6 +95,21 @@ const startFileManager = () => {
     //Get architecture
     if (input.startsWith(FILE_MANAGER_OPERATIONS.ARCHITECTURE)) {
       architecture();
+    }
+
+    //Hash
+    if (input.startsWith(FILE_MANAGER_OPERATIONS.HASH)) {
+      hash(input);
+    }
+
+    //Compress
+    if(input.startsWith(FILE_MANAGER_OPERATIONS.COMPRESS)){
+      compress(input);
+    }
+
+    //Decompress
+    if(input.startsWith(FILE_MANAGER_OPERATIONS.DECOMPRESS)){
+      deCompress(input);
     }
   });
 
