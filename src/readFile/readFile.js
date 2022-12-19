@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import fs, { readSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -6,10 +6,7 @@ import {
   INVALID_DATA
 } from "../constants/constants.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const readFile = (input) => {
+const readFile = (input, __filename, __dirname) => {
   const filePath = input.split(" ")[1];
 
   if (filePath) {
@@ -23,6 +20,10 @@ const readFile = (input) => {
       readableStream.on("error", () => {
         console.log(OPERATION_FAILED);
       })
+
+      readableStream.on("end", () => {
+        console.log(`You are currently in: ${path.dirname(fileURLToPath(import.meta.url))}`);
+      })
     }
     else {
       const readableStream = fs.createReadStream(path.join(__dirname, filePath), "utf8");
@@ -34,8 +35,11 @@ const readFile = (input) => {
       readableStream.on("error", () => {
         console.log(OPERATION_FAILED);
       })
-    }
 
+      readableStream.on("end", () => {
+        console.log(`You are currently in: ${path.dirname(fileURLToPath(import.meta.url))}`);
+      })
+    }
   } else {
     console.log(INVALID_DATA);
   }

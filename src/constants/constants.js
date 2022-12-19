@@ -17,5 +17,5 @@ export const FILE_MANAGER_OPERATIONS = {
 };
 export const INVALID_DATA = "Invalid data";
 export const OPERATION_FAILED = "Operation failed";
-export const HELLO_USER = `Welcome to the File Manager, ${process.argv[2].split("=")[1]}!`;
+export const HELLO_USER = `Welcome to the File Manager, ${process.argv[2].split("=")[1]}!\n`;
 export const BYE_USER = `\nThank you for using File Manager, ${process.argv[2].split("=")[1]}, goodbye!`;

@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -30,8 +30,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const startFileManager = () => {
-  console.log(__dirname);
   console.log(HELLO_USER);
+  console.log(`You are currently in: ${os.homedir()}\n`);
 
 
   process.stdin.on("data", (data) => {
@@ -44,12 +44,12 @@ const startFileManager = () => {
 
     //Read File
     if (input.startsWith(FILE_MANAGER_OPERATIONS.READ)) {
-      readFile(input);
+      readFile(input, __filename, __dirname);
     }
 
     //Create File
     if (input.startsWith(FILE_MANAGER_OPERATIONS.CREATE)) {
-      createFile(input);
+      createFile(input, __dirname);
     }
 
     //Rename File
